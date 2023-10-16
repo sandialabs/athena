@@ -18,20 +18,21 @@ The tool is based on / leverages the [Timeloop](http://github.com/nvlabs/timeloo
 The tool uses Accelergy to generate computation and data-movement performance look-up tables with analog components, which have a non-linear computational cost when compared to digital components. This table is generated in a Timeloop compatible format, allowing Timeloop to
 generate performance estimates for various architectures.
 
-The software uses the Timeloop+Accelergy hardware description format to generate these tables, but with new components which can represent either a complete analog crossbar array or sub-components of a analog crossbar array.
+The software uses the Timeloop+Accelergy hardware description format to generate these tables, but with new components which can represent either a complete analog crossbar array or subcomponents of an analog crossbar array.
 
-This code is based on and tied to work published in [1].
+This code is based on and tied to work published in ICRC 2022 [\[1\]](#1).
 
 ### Design
 
 ATHENA uses static lookup tools to generate performance estimates for a given architecture. In order to support analog devices, which can have non-linear relationships between the number of computations and energy, we support the analog devices as a set of dummy compute units attached to memory components. In an ATHENA component file, a "fat" PE unit consists of a memory layer attached to a pe layer. The memory layer determines the performance of the crossbar array, while the compute layer allows Timeloop to reason about the total number of computations required for a particular unit of computation.
 
-The performance lookup tabe is generated before the Timeloop instance is run; this process may take a while if there is a large range of energy and latency values that a particular crossbar array reports. Once generated, this table is re-used for each computation with the same components.
+The performance lookup table is generated before the Timeloop instance is run; this process may take a while if there is a large range of energy and latency values that a particular crossbar array reports. Once generated, this table is re-used for each computation with the same components.
 
 ### Documentation
 
-In addition to this document and the [workflow](#workflow) information, we have a documentation page available at ---GITHUB PAGE LINK---.
-To build the documentation locally, you will need to build the Sphnx documentation in the `docs` directory.
+In addition to this document and the [workflow](#workflow) information, we have a growing set of Sphinx documentation available.
+
+To build the documentation locally, you will need to build the Sphinx documentation in the `docs` directory.
 
 ### Workflow
 
@@ -75,7 +76,6 @@ python docker_setup.py
 
 The options for building are:
 
-- `--proxy/--no-proxy` (sets the SRN proxy by default, otherwise use --no_proxy)
 - `--no-user` (toggles permissions and does not set a UID or GID)
 - `--uid` (sets the UID for the user, default sets it to 1000)
 - `--gid` (sets the GID for the user, default sets it to 1000)
@@ -99,13 +99,19 @@ For more information about the current state of using ATHENA in the container, s
 
 ## Citing and Papers
 
-We have published the following which gives more detail on the underlying methods of ATHENA:
+We have published the following which gives more detail on the underlying methods of ATHENA. If you use ATHENA in your research, please cite our work using the following metadata:
 
-Plagge, Mark, Ben Feinberg, John McFarland, Fred Rothganger, Sapan Agarwal, Amro Awad, Clayton Hughes, and Suma G. Cardwell. "ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures."
-
-<a id="1">[1]</a>
+<a id="1" name="1">[1]
 Plagge, M., Feinberg, B., McFarland, J., Rothganger, F., Agarwal, S., Awad, A., Hughes, C., and Cardwell, S.G.:
 "ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures."
 In 2022 IEEE International Conference on Rebooting Computing (ICRC), pp. 13-23. IEEE, 2022.
+</a>
+<a id="2" name="2">[2]</a>
+Plagge, M., John, M., & G Cardwell, S. (2023). ATHENA - Analytical Tool for Heterogeneous Neuromorphic Architectures (Version 1.0.0) [Computer software]. 
+https://github.com/sandialabs/athena/
 
+
+
+
+----------
 <sub>Code and work released under SAND2023-09755O </sub>

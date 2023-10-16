@@ -104,11 +104,6 @@ def create_options_table(option_list, option_names):
 @click.command()
 @click.option("--build", default=False, is_flag=True, help="Build docker image here")
 @click.option(
-    "--proxy/--no-proxy",
-    default=True,
-    help="Generate dockerfile with or without proxy -- Stub function",
-)
-@click.option(
     "--no-user", is_flag=True, help="Do not set a user GID/UID in the Dockerfile"
 )
 @click.option("--uid", default=1000, help="If setting a user, use this UID")
@@ -125,7 +120,7 @@ def create_options_table(option_list, option_names):
     "--docker_loc", default=None, help="Path to Docker exe (default uses path)"
 )
 @click.argument("ARGS_OVER", nargs=-1)
-def cli(build, proxy, no_user, uid, gid, f, version_tag, docker_loc, args_over):
+def cli(build, no_user, uid, gid, f, version_tag, docker_loc, args_over):
     """
     \b
     Athena Docker Builder Tool
@@ -153,8 +148,10 @@ def cli(build, proxy, no_user, uid, gid, f, version_tag, docker_loc, args_over):
     """
     click.secho(f"{'🦉 Athena Setup Tool ':^80}", fg="green", bold=True, underline=True)
     click.echo("\n\n")
-    make_dockerfile(proxy, no_user, uid, gid, f)
-    build_docker(build, version_tag, docker_loc, args_over)
+    make_dockerfile(proxy=False, no_user=no_user, uid=uid, gid=gid, f=f)
+    build_docker(
+        build=build, version_tag=version_tag, docker_loc=docker_loc, args_over=args_over
+    )
 
 
 def make_dockerfile(proxy, no_user, uid, gid, f):
@@ -163,8 +160,7 @@ def make_dockerfile(proxy, no_user, uid, gid, f):
     opts = ["Proxy?", "Custom User?"]
     vals = [proxy, no_user]
     if not no_user:
-        opts.append("UserID (o)")
-        opts.append("GroupID (o)")
+        opts.extend(("UserID (o)", "GroupID (o)"))
         vals.append(uid)
         vals.append(gid)
     opts.append("Rebuild?")
