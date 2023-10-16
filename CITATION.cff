@@ -20,39 +20,39 @@ version: 1.0.0
 url: "https://github.com/sandialabs/athena/"
 license: MIT
 date-released: 2023-10-16
-references:
-  - title: "ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures"
-    type: conference-paper
-    authors:
-      - given-names: Mark
-        family-names: Plagge
-      - given-names: Feinberg
-        family-names: Ben
-        affiliation: Sandia National Laboratories
-      - given-names: McFarland
-        family-names: John
-        affiliation: Sandia National Laboratories
-      - given-names: Fred
-        family-names: Rothganger
-        affiliation: Sandia National Laboratories
-      - given-names: Sapan
-        family-names: Agarwal
-        affiliation: Sandia National Laboratories
-      - given-names: Awad
-        family-names: Amro
-        affiliation: Sandia National Laboratories
-      - given-names: Hughes
-        family-names: Clayton
-        affiliation: Sandia National Laboratories
-      - given-names: Suma
-        name-particle: G
-        family-names: Cardwell
-        affiliation: Sandia National Laboratories
-    doi: "10.1109/ICRC57508.2022.00016"
-    conference:
-      name: "2022 IEEE International Conference on Rebooting Computing (ICRC)"
-    collection-tite: "2022 IEEE International Conference on Rebooting Computing (ICRC) - December 9-10 2022, Proceedings"
-    month: 12
-    year: 2022
-    start: 13
-    end: 23
+preferred-citation:
+  title: "ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures"
+  type: conference-paper
+  authors:
+    - given-names: Mark
+      family-names: Plagge
+    - given-names: Feinberg
+      family-names: Ben
+      affiliation: Sandia National Laboratories
+    - given-names: McFarland
+      family-names: John
+      affiliation: Sandia National Laboratories
+    - given-names: Fred
+      family-names: Rothganger
+      affiliation: Sandia National Laboratories
+    - given-names: Sapan
+      family-names: Agarwal
+      affiliation: Sandia National Laboratories
+    - given-names: Awad
+      family-names: Amro
+      affiliation: Sandia National Laboratories
+    - given-names: Hughes
+      family-names: Clayton
+      affiliation: Sandia National Laboratories
+    - given-names: Suma
+      name-particle: G
+      family-names: Cardwell
+      affiliation: Sandia National Laboratories
+  doi: "10.1109/ICRC57508.2022.00016"
+  conference:
+    name: "2022 IEEE International Conference on Rebooting Computing (ICRC)"
+  collection-tite: "2022 IEEE International Conference on Rebooting Computing (ICRC) - December 9-10 2022, Proceedings"
+  month: 12
+  year: 2022
+  start: 13
+  end: 23
