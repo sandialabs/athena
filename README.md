@@ -106,6 +106,8 @@ Plagge, M., Feinberg, B., McFarland, J., Rothganger, F., Agarwal, S., Awad, A., 
 "ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures."
 In 2022 IEEE International Conference on Rebooting Computing (ICRC), pp. 13-23. IEEE, 2022.
 </a>
+
+
 <a id="2" name="2">[2]</a>
 Plagge, M., John, M., & G Cardwell, S. (2023). ATHENA - Analytical Tool for Heterogeneous Neuromorphic Architectures (Version 1.0.0) [Computer software]. 
 https://github.com/sandialabs/athena/
