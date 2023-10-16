@@ -52,6 +52,7 @@ preferred-citation:
     affiliation: Sandia National Laboratories
   doi: "10.1109/ICRC57508.2022.00016"
   journal: "2022 IEEE International Conference on Rebooting Computing (ICRC)"
+  booktitle: "2022 IEEE International Conference on Rebooting Computing (ICRC)"
   month: 12
   year: 2022
   start: 13
