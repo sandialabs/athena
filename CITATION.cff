@@ -1,47 +1,41 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
 cff-version: 1.2.0
-title: 'ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures'
-message: If you use this software, please cite it as below.
-author:
-- given-name: Mark
-  family-name: Plagge
-  email: mplagge@sandia.gov
-  affiliation: Sandia National Laboratories
-- given-name: Ben
-  family-name: Feinberg
-  affiliation: Sandia National Laboratories
-
-- given-name: John
-  family-name: McFarland
-  affiliation: Sandia National Laboratories
-
-- given-name: Fred
-  family-name: Rothganger
-  affiliation: Sandia National Laboratories
-
-- given-name: Sapan
-  family-name: Agarwal
-  affiliation: Sandia National Laboratories
-
-- given-name: Amro
-  family-name: Awad
-  affiliation: Sandia National Laboratories
-
-- given-name: Clayton
-  family-name: Hughes
-  affiliation: Sandia National Laboratories
-
-- given-name: Suma
-  family-name: Cardwell
-  name-suffix: G
-  affiliation: Sandia National Laboratories
-
-url: https://ieeexplore.ieee.org/abstract/document/10062740/
-license: Unlicense
-version: 0.0.1
-date-released: '2023-10-16'
+title: ATHENA
+message: 'If you use this software, please cite our work'
+type: software
+authors:
+  - given-names: Mark
+    family-names: Plagge
+    email: mplagge@sandia.gov
+    affiliation: Sandia National Laboratories
+  - given-names: Feinberg
+    family-names: Ben
+    affiliation: Sandia National Laboratories
+  - given-names: McFarland
+    family-names: John
+    affiliation: Sandia National Laboratories
+  - given-names: Fred
+    family-names: Rothganger
+    affiliation: Sandia National Laboratories
+  - given-names: Sapan
+    family-names: Agarwal
+    affiliation: Sandia National Laboratories
+  - given-names: Awad
+    family-names: Amro
+    affiliation: Sandia National Laboratories
+  - given-names: Hughes
+    family-names: Clayton
+    affiliation: Sandia National Laboratories
+  - given-names: Suma
+    name-particle: G
+    family-names: Cardwell
+    affiliation: Sandia National Laboratories
 identifiers:
   - type: url
-    value:  https://ieeexplore.ieee.org/abstract/document/10062740/
+    value: >-
+      https://ieeexplore.ieee.org/abstract/document/10062740/
     description: Publication URL
 repository-code: 'https://github.com/sandialabs/athena'
 license: MIT
