@@ -3,9 +3,27 @@
 
 cff-version: 1.2.0
 title: ATHENA
-message: 'If you use this software, please cite our work'
-type: software
+message: 'If you use this software, please cite our work as below.'
 authors:
+  - given-names: Mark
+    family-names: Plagge
+    email: mplagge@sandia.gov
+    affiliation: Sandia National Laboratories
+  - given-names: McFarland
+    family-names: John
+    affiliation: Sandia National Laboratories
+  - given-names: Suma
+    name-particle: G
+    family-names: Cardwell
+    affiliation: Sandia National Laboratories
+version: 1.0.0
+url: https://github.com/sandialabs/athena/
+repository-code: 'https://github.com/sandialabs/athena'
+license: MIT
+date-released: '2023-10-16'
+preferred-citation:
+  type: conference-paper
+  authors:
   - given-names: Mark
     family-names: Plagge
     email: mplagge@sandia.gov
@@ -32,11 +50,10 @@ authors:
     name-particle: G
     family-names: Cardwell
     affiliation: Sandia National Laboratories
-identifiers:
-  - type: url
-    value: >-
-      https://ieeexplore.ieee.org/abstract/document/10062740/
-    description: Publication URL
-repository-code: 'https://github.com/sandialabs/athena'
-license: MIT
-date-released: '2023-10-16'
+  doi: "10.1109/ICRC57508.2022.00016"
+  journal: "2022 IEEE International Conference on Rebooting Computing (ICRC)"
+  month: 12
+  year: 2022
+  start: 13
+  end: 23
+  title: "ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures"
