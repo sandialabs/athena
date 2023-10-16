@@ -1,0 +1,23 @@
+- name: PE0
+  local:
+    - name: scratchpad
+      class: sonos_storage
+      attributes:
+        width: 64
+        depth: 1
+        meshX: 4608
+        meshY: 256
+    - name: mac
+      class: sonos_array
+      attributes:
+        datawidth: 16
+        depth: 1
+        meshX: 4608
+        meshY: 256
+        active_cols: 257
+        active_rows: 0
+        allow_negatives: 0
+      arguments:
+        test_arg1: 32
+        active_rows: 0..257
+        active_cols: 0..257

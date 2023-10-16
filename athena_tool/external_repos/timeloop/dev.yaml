@@ -1,0 +1,1 @@
+sdk_post_build: 'RUN apt-get update && apt-get install -y cmake libboost-all libyaml-cpp libconfig++'

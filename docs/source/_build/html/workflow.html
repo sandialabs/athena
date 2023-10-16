@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Workflow Example &#8212; ATHENA 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="README" href="readme.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="workflow-example">
+<span id="workflow"></span><h1>Workflow Example<a class="headerlink" href="#workflow-example" title="Link to this heading">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="athena-workflow-example-on-terminal">
+<h2>ATHENA Workflow example on terminal<a class="headerlink" href="#athena-workflow-example-on-terminal" title="Link to this heading">¶</a></h2>
+<section id="run-the-docker-container">
+<h3>Run the docker container<a class="headerlink" href="#run-the-docker-container" title="Link to this heading">¶</a></h3>
+<p class="linemarker linemarker-5">First, boot up the docker container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(base) lgparke@tombstone:~$ docker run -it --rm athena:latest
+</pre></div>
+</div>
+</section>
+<section id="athena-cli">
+<h3>ATHENA CLI<a class="headerlink" href="#athena-cli" title="Link to this heading">¶</a></h3>
+<p class="linemarker linemarker-13">This is what the <code class="docutils literal notranslate"><span class="pre">--help</span></code> flag current shows for the CLI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root@c74efa9c00b9:/home/ath_usr# athena --help
+Usage: athena [OPTIONS] COMMAND [ARGS]...
+
+      ___  ________  _________   ____\|/ ,___, |/|/
+     /   |/_  __/ / / / ____/ | / /   |/ (0,0)/ |/_
+    / /| | / / / /_/ / __/ /  |/ / /| |/ /)_) |/_
+   / ___ |/ / / __  / /___/ /|  / ___ |\_ &quot;&quot; |/_
+  /_/  |_/_/ /_/ /_/_____/_/ |_/_/  |_| \|_|/
+
+  Main CLI for using Athena
+
+  To modify architecture configuration, edit the `&lt;arch&gt;_config.yaml` file
+  in the architecture folder. This file will define which base architecture
+  is chosen, what component files are used, which mapper and constraints are
+  applied, and where the outputs should be stored.
+
+  For more information on available commands,
+  run `athena &lt;command&gt; --help`.
+
+
+Options:
+  -a, --arch DIRPATH          Folder path to chosen architecture
+  -i, --inputs [FILEPATH ..]  Paths of input files to analyze
+  -o, --outputs DIRPATH       Redirects the outputs to this folder if
+                              specified; the folder must exist before using
+                              ATHENA
+
+  -v, --verbose               If verbose flag is set, then a longer summary
+                              message is printed and saved to the summary .csv
+                              file.
+
+  --help                      Show this message and exit.
+
+Commands:
+  init      Initializes ATHENA.
+  sanitize  Sanitizes files given their filepaths.
+</pre></div>
+</div>
+</section>
+<section id="initialize-athena">
+<h3>Initialize athena<a class="headerlink" href="#initialize-athena" title="Link to this heading">¶</a></h3>
+<p class="linemarker linemarker-56">First, we need to initialize the tool to make sure configurations and package environment are set.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root@c74efa9c00b9:/home/ath_usr# athena init
+Initializing ATHENA...
+File `accelergy_config.yaml` generated.
+Added &#39;table_plug_ins&#39; key to `accelergy_config.yaml`
+Adding additional plug-ins to `accelergy_config.yaml`...
+  + accelergy-sonos-plug-in to estimator_plug_ins
+  + PIM_estimation_tables to table_plug_ins
+Updated `accelergy_config.yaml`
+</pre></div>
+</div>
+</section>
+<section id="run-athena-on-all-vgg-layers-in-verbose-mode">
+<h3>Run athena on all vgg layers in verbose mode<a class="headerlink" href="#run-athena-on-all-vgg-layers-in-verbose-mode" title="Link to this heading">¶</a></h3>
+<p class="linemarker linemarker-71">After init, we can use the tool to analyze multiple input files and control the verbosity of the summary statement at the end.</p>
+<p class="linemarker linemarker-73">Here, we set the verbosity flag <code class="docutils literal notranslate"><span class="pre">-v</span></code> and set the inputs using <code class="docutils literal notranslate"><span class="pre">-i</span></code> by passing all of the vgg layers.</p>
+<p class="linemarker linemarker-75">The tool alerts the users of which base architecture is chosen, and checks for additional primitive components to add to the accelergy config file.</p>
+<p class="linemarker linemarker-77">It then checks if there are outputs in the output folder (default is used here, but can otherwise be specified), and asks the user if they want to save the previously found files.</p>
+<p class="linemarker linemarker-79">I choose ‘n’ to remove all the current files in the <code class="docutils literal notranslate"><span class="pre">sonos_pim/outputs</span></code> folder, and it tells me.</p>
+<p class="linemarker linemarker-81">ATHENA then runs the timeloop-mapper on all of the inputs and prints a summary statement at the end.</p>
+<p class="linemarker linemarker-83">The summary statement is saved to a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file and the details of each layer’s run are stored in a <code class="docutils literal notranslate"><span class="pre">.pkl</span></code> file. Logs for each layer are stored in <code class="docutils literal notranslate"><span class="pre">/outputs/logs</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root@c74efa9c00b9:/home/ath_usr# athena -v -i accelergy_architectures/sonos_pim/vgg/*
+Running ATHENA with /home/ath_usr/accelergy_architectures/sonos_pim
+  &gt; using `system_SONOS.yaml` as base architecture
+Checking primitive components in `accelergy_config.yaml`...
+
+Output files already in outputs, do you want to save them? (y/n): n
+Removing contents from output folder...
+
+Calling timeloop-mapper...
+  running timeloop on `vgg_layer1`...
+    &gt; timeloop-mapper execution took 128.387 seconds
+  running timeloop on `vgg_layer2`...
+    &gt; timeloop-mapper execution took 129.774 seconds
+  running timeloop on `vgg_layer3`...
+    &gt; timeloop-mapper execution took 49.738 seconds
+  running timeloop on `vgg_layer4`...
+    &gt; timeloop-mapper execution took 57.575 seconds
+  running timeloop on `vgg_layer5`...
+    &gt; timeloop-mapper execution took 52.568 seconds
+  running timeloop on `vgg_layer6`...
+    &gt; timeloop-mapper execution took 116.147 seconds
+  running timeloop on `vgg_layer7`...
+    &gt; timeloop-mapper execution took 117.556 seconds
+  running timeloop on `vgg_layer8`...
+    &gt; timeloop-mapper execution took 160.66 seconds
+  running timeloop on `vgg_layer9`...
+    &gt; timeloop-mapper execution took 74.302 seconds
+  running timeloop on `vgg_layer10`...
+    &gt; timeloop-mapper execution took 74.877 seconds
+  running timeloop on `vgg_layer11`...
+    &gt; timeloop-mapper execution took 46.68 seconds
+  running timeloop on `vgg_layer12`...
+    &gt; timeloop-mapper execution took 47.333 seconds
+  running timeloop on `vgg_layer13`...
+    &gt; timeloop-mapper execution took 46.854 seconds
+  running timeloop on `vgg_layer14`...
+    &gt; timeloop-mapper execution took 47.242 seconds
+  running timeloop on `vgg_layer15`...
+    &gt; timeloop-mapper execution took 52.152 seconds
+  running timeloop on `vgg_layer16`...
+    &gt; timeloop-mapper execution took 47.855 seconds
+
+Total runtime took 1249.698630809784 seconds
+Summary:
+       filename                        problem  utilization   cycles     energy_pJ  energy_per_mac        macs
+0    vgg_layer1     [3, 64, 3, 3, 1, 224, 224]     0.002626    50176  2.886150e+09       33.287340    86704128
+1    vgg_layer2    [64, 64, 3, 3, 1, 224, 224]     0.056031    50176  9.652946e+11      521.868877  1849688064
+2    vgg_layer3   [64, 128, 3, 3, 1, 112, 112]     0.032685    43008  2.541017e+11      274.750884   924844032
+3    vgg_layer4  [128, 128, 3, 3, 1, 112, 112]     0.001167  2408448  2.654022e+11      143.484858  1849688064
+4    vgg_layer5    [128, 256, 3, 3, 1, 56, 56]     0.002335   602112  9.467273e+11     1023.661539   924844032
+5    vgg_layer6    [256, 256, 3, 3, 1, 56, 56]     0.028016   100352  5.611110e+11      303.354414  1849688064
+6    vgg_layer7    [256, 256, 3, 3, 1, 56, 56]     0.028016   100352  5.611110e+11      303.354414  1849688064
+7    vgg_layer8    [256, 512, 3, 3, 1, 28, 28]     0.074708    18816  1.489750e+11      161.081200   924844032
+8    vgg_layer9    [512, 512, 3, 3, 1, 28, 28]     0.130739    21504  2.974902e+11      160.832635  1849688064
+9   vgg_layer10    [512, 512, 3, 3, 1, 28, 28]     0.130739    21504  2.974902e+11      160.832635  1849688064
+10  vgg_layer11    [512, 512, 3, 3, 1, 14, 14]     0.004669   150528  4.317438e+10       93.365749   462422016
+11  vgg_layer12    [512, 512, 3, 3, 1, 14, 14]     0.004669   150528  4.317438e+10       93.365749   462422016
+12  vgg_layer13    [512, 512, 3, 3, 1, 14, 14]     0.004669   150528  4.317438e+10       93.365749   462422016
+13  vgg_layer14   [25088, 4096, 1, 1, 1, 1, 1]     0.012451    12544  2.059025e+11     2003.713296   102760448
+14  vgg_layer15    [4096, 4096, 1, 1, 1, 1, 1]     0.099611      256  3.358803e+10     2002.002691    16777216
+15  vgg_layer16    [4096, 1000, 1, 1, 1, 1, 1]     0.038911      160  8.205068e+09     2003.190313     4096000
+
+Verbose summary stored in /home/ath_usr/accelergy_architectures/sonos_pim/outputs/verbose_summary.csv
+Detailed summaries of each problem stored in /home/ath_usr/accelergy_architectures/sonos_pim/outputs/detailed_summary.pkl
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">ATHENA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">README</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#athena-workflow-example-on-terminal">ATHENA Workflow example on terminal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="readme.html" title="previous chapter">README</a></li>
+      <li>Next: <a href="license.html" title="next chapter">License</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023,Sandia National Laboratories.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/workflow.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

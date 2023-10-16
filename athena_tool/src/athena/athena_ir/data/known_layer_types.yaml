@@ -1,0 +1,12 @@
+GEMM:
+  dims:
+    A: 1
+    B: 2
+conv:
+  dims:
+    X: 2
+    Y: 2
+  torch_types:
+    - conv1d
+    - conv2d
+    - conv3d

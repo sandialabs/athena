@@ -1,0 +1,11 @@
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: E:/dev/athena/athena_tool/external_repos/timeloop/out/build/windows-default/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b1132 && [1/2] Building C object CMakeFiles\cmTC_b1132.dir\CheckIncludeFile.c.obj
+FAILED: CMakeFiles/cmTC_b1132.dir/CheckIncludeFile.c.obj 
+C:\PROGRA~1\MIB055~1\2022\Preview\VC\Tools\MSVC\1430~1.304\bin\Hostx64\x64\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\cmTC_b1132.dir\CheckIncludeFile.c.obj /FdCMakeFiles\cmTC_b1132.dir\ /FS -c CheckIncludeFile.c
+CheckIncludeFile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+ninja: build stopped: subcommand failed.
+
+
+

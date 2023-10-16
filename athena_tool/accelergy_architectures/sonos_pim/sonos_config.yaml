@@ -1,0 +1,12 @@
+arch_name: SONOS
+arch_paths:
+#  main_yaml: arch/sonos_tile.yaml
+#  main_yaml: arch/system_PIM.yaml
+#  main_yaml: arch/system_SONOS.yaml
+  main_yaml: arch/system_SONOS2.yaml
+#  main_yaml: arch/system_sonos_single.yaml
+  components: arch/components
+mapping_paths:
+  constraints: constraints
+  mapper: mapper
+output_path: outputs

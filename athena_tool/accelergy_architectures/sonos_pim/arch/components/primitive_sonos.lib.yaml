@@ -1,0 +1,31 @@
+version: 0.3
+classes:
+  - name: sonos_compute
+    attributes:
+      technology: sonos
+      cellwidth: 2
+      latency: 1ns
+    actions:
+      - name: compute
+      - name: idle
+  - name: sonos_cell_storage
+    attributes:
+      technology: sonos
+      latency: 1ns
+      cellwidth: 2
+    actions:
+      - name: read
+      - name: write
+      - name: idle
+  - name: sonos_cell_dummy
+    attributes:
+      technology: sonos
+      width: memory_width
+      depth: memory_depth
+      n_rdwr_ports: n_rdwr_ports
+      n_banks: n_banks
+      cellwidth: cell_datawidth
+    actions:
+      - name: read
+      - name: write
+      - name: idle

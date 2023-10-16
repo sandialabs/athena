@@ -1,0 +1,24 @@
+compound_components:
+  version: 0.3
+  classes:
+    - name: lmac
+      attributes:
+        technology: 32nm
+        datawidth: 16
+      subcomponents:
+        - name: intmac
+          class: intmac
+          attributes:
+            technology: technology
+            datawidth: datawidth
+      actions:
+        - name: compute
+          arguments:
+            data_width: 1..128
+          subcomponents:
+            - name: intmac
+              actions:
+                - name: mac_random
+                  arguments:
+                    data_width: data_width
+

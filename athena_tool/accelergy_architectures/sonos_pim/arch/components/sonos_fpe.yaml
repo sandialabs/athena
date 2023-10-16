@@ -1,0 +1,46 @@
+compound_components:
+  version: 0.3
+  classes:
+  - name: sonos_fat
+    attributes:
+      technology: sonos
+      cell_technology: sonos
+      cmos_technology: 40nm
+      cell_datawidth: 8
+      DAC_datawidth: 2
+      datawidth: 8
+      nCells: datawidth/cell_datawidth
+      nCycles: datawidth/DAC_datawidth
+      compute_latency: 100ns
+      fat: 1
+      active_cols: 54
+      active_rows: 64
+    subcomponents:
+      - name: sonos_fat[0..3455]
+        class: sonos_compute
+        attributes:
+          technology: cell_technology
+          cellwidth: cellwidth
+          latency: 100ns
+          active_cols: active_cols
+          active_rows: active_rows
+          allow_negatives: allow_negatives
+          activation_function: 0
+          fat: fat
+          
+    actions:
+      - name: compute
+        arguments:
+          active_cols: 52..54
+          active_rows: 62..64
+        subcomponents:
+          - name: sonos_fat #[0..nCells-1] # spatial
+            actions:
+              - name: compute
+                action_share: nCycles # temporal: compute 1 bit input at a time
+                arguments:
+                  ttlx: 1024
+                  active_rows: active_cols
+                  active_cols: active_cols
+                  fat: fat
+                  fat_grid: 1

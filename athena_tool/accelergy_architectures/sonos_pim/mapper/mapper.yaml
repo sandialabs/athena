@@ -1,0 +1,12 @@
+mapper:
+  algorithm: hybrid
+  optimization-metrics: [ energy ]
+#  algorithm: linear-pruned
+  diagnostics: false
+  live-status: false
+  #max-permutations-per-if-visit: 16
+  num-threads: 80
+  search-size: 400
+  timeout: 6000
+  victory-condition: 20
+  sync-interval: 10

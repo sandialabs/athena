@@ -1,0 +1,31 @@
+mapspace:
+  targets:
+    # =======================================
+    # DRAM
+    # =======================================
+    - target: DRAM
+      type: bypassing
+      keep: [Inputs, Outputs]
+      bypass: [Weights]  # weights are stored locally in the memcells, not loaded from DRAM
+    - target: DRAM
+      type: temporal
+      factors: R=1 S=1 M=1 C=1
+      permutation: RSCPQMN
+    # =======================================
+    - target: scratchpad
+      type: bypassing
+      keep: [Weights]
+      bypass: [Inputs, Outputs]
+    - target: scratchpad
+      type: temporal
+      factors: R=1 S=1 M=1 C=1  # single weight tile that does not change
+
+    - target: ALU_OUT
+      type: bypass
+      bypass: [Inputs, Weights]
+      keep: [Outputs]
+    # - target: ALU_OUT
+    #   type: temporal
+    #   factors: R=1 S=1 M=1 C=1  # single weight tile that does not change
+    #   permutation: RSCPQMN
+    

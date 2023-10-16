@@ -1,0 +1,8 @@
+# ATHENA Python Package Dependencies
+
+
+# external packages
+./external_repos/accelergy
+./external_repos/accelergy-table-based-plug-ins
+./external_repos/accelergy-cacti-plug-in
+./src/athena/accelergy-sonos-plug-in
