@@ -1,0 +1,60 @@
+architecture:
+  version: 0.3
+
+  subtree:
+  - name: main_arch
+    local:
+      - name: DRAM
+        class: DRAM
+        attributes:
+          sizeKB: 65535
+          energy: 0
+
+    subtree: # Virtual cluster of MVM arrays
+      - name: MVMArray[0..293759]
+        local:
+          - name: scratchpad # MVM Array Weights
+            class: sonos_dummy
+            attributes:
+              memory_depth: 16384
+              memory_width: 64
+              n_banks: 32
+              block-size: 4
+              word-bits: 16
+              read_bandwidth: 16
+              write_bandwidth: 16
+              n_rdwr_ports: 2
+              action_name: read
+
+#
+#              - name: scratchpad
+#                class: sonos_storage  # definitions of the compound classes can be found under "components" folder
+#                attributes:
+#                  #width: 16       # width in bits
+#                  #depth: 1
+#                  sizeKB: 32
+#                  #meshX: 256        # number of components in the X dimension (PE rows)
+#                  #meshY: 256        # number of components in the Y dimension (PE cols)
+          - name: sonos_nvm
+            class: compute
+            subclass: sonos_array
+            attributes:
+              datawidth: 16   # datawidth in bits
+              #meshX: 254        # number of components in the X dimension (PE rows)
+              #meshY: 128        # number of components in the Y dimension (PE cols)
+              active_rows: 54
+              #meshX: 256
+              active_cols: 64
+              nCells: 1152 * 255
+              fat: 1
+              action_name: compute
+
+
+
+
+#
+#          - name: ALU_OUT
+#            class: SRAM
+#            attributes:
+#              sizeKB: 1024
+#              #meshX: 256

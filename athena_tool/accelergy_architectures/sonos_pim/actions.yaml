@@ -1,0 +1,11 @@
+action_counts:
+  version: 0.3
+  local:
+    - name: system_arch.chip.tile[0..255].Core[0..3].MVMArray[0..294911].sonos_nvm
+      action_counts:
+        - name: compute
+          count: 86704128
+          arguments:
+            active_rows: 54
+            active_cols: 64
+         

@@ -1,0 +1,73 @@
+compound_components:
+  version: 0.3
+  classes:
+  - name: sonos_dummy
+    attributes:
+      technology: sonos
+      memory_depth: 12
+      memory_width: 16
+      n_rdwr_ports: 2
+      n_banks: 1
+      n_buffets: 1
+      sonos_dummy: 1m
+      cell_datawidth: 2
+    subcomponents:
+      - name: storage
+        class: sonos_cell_dummy
+
+        attributes:
+          technology: technology
+          width: memory_width
+          depth: memory_depth
+          n_rdwr_ports: n_rdwr_ports
+          n_banks: n_banks
+          sonos_dummy: 1
+          cellwidth: cell_datawidth
+    actions:
+      - name: write
+        arguments:
+          sonos_dummy: 1..2
+          data_delta: 1..10
+          address_delta: 0..256
+
+        subcomponents:
+          - name: storage
+            actions:
+              - name: write
+                attributes:
+                  technology: sonos
+                  sonos_dummy: 1
+                arguments:
+                  data_delta: data_delta
+                  address_delta: address_delta
+      - name: read
+        attributes:
+          sonos_dummy: 1
+        arguments:
+          sonos_dummy: 0..1
+          data_delta: 0..1
+          address_delta: 0..n_banks
+        subcomponents:
+          - name: storage
+            actions:
+              - name: read
+                attributes:
+                  sonos_dummy: 1
+                arguments:
+                  sonos_dummy: sonos_dummy
+                  data_delta: data_delta
+                  address_delta: address_delta
+      - name: idle
+        arguments:
+          sonos_dummy: 0..1
+          data_delta: 0..1
+          address_delta: 0..1
+        subcomponents:
+          - name: storage
+            actions:
+              - name: idle
+                attributes:
+                  sonos_dummy: 1
+                arguments:
+                  data_delta: data_delta
+                  address_delta: address_delta

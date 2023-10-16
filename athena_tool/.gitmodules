@@ -1,0 +1,4 @@
+[submodule "athena_tool/external_repos"]
+	path = athena_tool/external_repos
+	url = https://gitlab-ex.sandia.gov:aml-intrastructure/athena_tool_externals.git
+

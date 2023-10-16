@@ -1,0 +1,6 @@
+C:\WINDOWS\system32\wsl.exe --distribution Ubuntu --exec /usr/bin/zsh -c "export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /mnt/e/dev/athena/athena_tool/external_repos/timeloop/cmake-build-relwithdebinfo && /usr/bin/cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo '-DCMAKE_CXX_COMPILER=/usr/bin/g++' -G 'CodeBlocks - Unix Makefiles' /mnt/e/dev/athena/athena_tool/external_repos/timeloop; exitcode=$?; sleep 0.001; (exit $exitcode)"
+-- Boost::iostreamsBoost::serialization
+-- /mnt/e/dev/athena/athena_tool/external_repos/timeloop
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/e/dev/athena/athena_tool/external_repos/timeloop/cmake-build-relwithdebinfo

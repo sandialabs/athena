@@ -1,0 +1,44 @@
+architecture:
+  version: 0.3
+  subtree:
+    - name: sonos_fpe
+      attributes:
+        technology: 40nm
+        latency: 1ns
+      subtree:
+       - name: tile[0..27]
+         local:
+           - name: buffer
+             class: storage
+             subclass: SRAM
+             attributes:
+                memory_depth: 28
+                
+                memory_width: 64
+                n_banks: 32
+                block-size: 4
+                word-bits: 16
+#                read_bandwidth: 16
+#                write_bandwidth: 16
+                n_rdwr_ports: 2
+         subtree:
+           - name: PE[0..3455]
+             local: # "local" contains physical instantiations
+               - name: scratchpad
+                 class: sonos_storage  # definitions of the compound classes can be found under "components" folder
+                 attributes:
+                   technology: sonos
+                   width: 16       # width in bits
+                   depth: 1
+               - name: mac
+                 class: compute
+                 subclass: sonos_fat
+                 attributes:
+                   datawidth: 16   # datawidth in bits
+                   meshX: 54        # number of components in the X dimension (PE rows)
+                   meshY: 64
+                   active_cols: 54
+                   active_rows: 64
+                   
+                   
+             

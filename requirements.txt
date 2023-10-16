@@ -1,0 +1,12 @@
+# Packages required for docker setup scripts
+
+# add trusted hosts 
+--trusted-host pypi.org 
+--trusted-host files.pythonhosted.org
+
+# packages
+click~=7.1.2
+halo~=0.0.30
+tabulate~=0.8.9
+pyaml~=20.4.0
+pyyaml~=5.4.1

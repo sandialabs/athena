@@ -1,0 +1,96 @@
+################# DOCKERFILE FOR BUILD ################
+
+FROM python:3.9.4-slim AS fileholder
+ADD athena_tool.tar.gz /athena
+
+# add prebuilt gcc for building external dependencies
+FROM gcc:latest AS builder
+COPY --from=fileholder /athena/external_repos /external_repos
+
+# set proxies for installing things
+### PROXY CONFIG ###
+
+### PROXY CONFIG END ###
+
+# install dependencies
+RUN apt-get update --fix-missing \
+ && apt-get install -y scons libconfig++-dev libboost-dev libboost-iostreams-dev \
+                       libboost-serialization-dev libyaml-cpp-dev libncurses-dev \
+                       libtinfo-dev libgpm-dev git build-essential python3-pip \
+ && cd /external_repos/cacti \
+ && make -j20 \
+ && cd /external_repos/accelergy \
+ && pip3 --trusted-host pypi.org --trusted-host files.pythonhosted.org install --upgrade pip \
+ && pip3 --trusted-host pypi.org --trusted-host files.pythonhosted.org install . \
+ && cd /external_repos/accelergy-cacti-plug-in \
+ && pip3 --trusted-host pypi.org --trusted-host files.pythonhosted.org install . \
+ && cp -r /external_repos/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in \
+ && cd /external_repos/accelergy-table-based-plug-ins \
+ && pip3 --trusted-host pypi.org --trusted-host files.pythonhosted.org install . \
+ && cd /external_repos/timeloop \
+ && ln -s /external_repos/timeloop/pat-public/src/pat /external_repos/timeloop/src \
+ && sed -e '/#pragma once/a\' -e '#include <numeric>' ./include/loop-analysis/nest-analysis-tile-info.hpp > temp \
+ && cat temp > ./include/loop-analysis/nest-analysis-tile-info.hpp \
+ && scons -j20 --accelergy --static \
+ && cp build/timeloop-* /usr/local/bin \
+ && rm -rf /usr/local/bin/pip* \
+ && rm -rf /usr/local/bin/python*
+
+# add prebuilt python image and add athena files
+FROM python:3.9.4-slim AS athena
+
+ENV LANG="C.UTF-8" LC_ALL="C.UTF-8"
+ARG UID=1000
+ARG GID=1000
+ARG UNAME=ath_usr
+ARG GNAME=ath_usr
+
+### USER CONFIG ###
+RUN groupadd -r -g ${GID} ${GNAME} && useradd -r -g ${GNAME} -u ${UID} ${UNAME}
+### USER CONFIG END ###
+
+### PROXY CONFIG ###
+
+### PROXY CONFIG END ###
+
+# copy ATHENA code from athena file holder layer
+COPY --chown=${UNAME}:${GNAME} --from=fileholder /athena /home/${UNAME}
+COPY --chown=${UNAME}:${GNAME} docker_build/bashrc ~/.bashrc
+COPY --chown=${UNAME}:${GNAME} --from=builder /usr/local/src /usr/local/src
+COPY --chown=${UNAME}:${GNAME} --from=builder /usr/local/bin /usr/local/bin
+COPY --chown=${UNAME}:${GNAME} --from=builder /usr/local/share/accelergy /usr/local/share/accelergy
+COPY --chown=${UNAME}:${GNAME} --from=builder /usr/local/share/accelergy/estimation_plug_ins \
+                                              /usr/local/share/accelergy/estimation_plug_ins
+# install other requirements
+WORKDIR /home/${UNAME}
+RUN apt-get update --fix-missing \
+ && apt-get install -y wget bzip2 ca-certificates vim nano curl git locate tree \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
+ && pip install -r requirements.txt \
+ && pip install -r ext_requirements.txt \
+ && pip install . \
+ && chown -R ${UNAME}:${GNAME} /usr/local/lib/python3.9/site-packages \
+ && ln -s /usr/local/bin/python3 /usr/bin/python3 \
+ && mkdir /home/${UNAME}/data_volume \
+ && chown -R ${UNAME}:${GNAME} /home/${UNAME}/data_volume \
+ && rm -rf /home/${UNAME}/external_repos
+WORKDIR /
+
+ENV TINI_VERSION v0.16.1
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+
+################ Persistent dev environment within container ################
+# directory that acts as mount (duplicates everything in /home/ath_usr when mount and bind)
+RUN mkdir /workspace \
+ && chown -R ${UNAME}:${GNAME} /workspace
+
+# set volume for data storage
+VOLUME /home/${UNAME}/data_volume
+
+# final command
+ENV DOCKER=1
+WORKDIR /home/${UNAME}
+ENTRYPOINT [ "/usr/bin/tini", "--" ]
+CMD ["bash"]

@@ -1,0 +1,116 @@
+    _                _                      
+   / \   ___ ___ ___| | ___ _ __ __ _ _   _ 
+  / _ \ / __/ __/ _ \ |/ _ \ '__/ _` | | | |
+ / ___ \ (_| (_|  __/ |  __/ | | (_| | |_| |
+/_/   \_\___\___\___|_|\___|_|  \__, |\__, |
+                                |___/ |___/ 
+
+Info: generating outputs according to the following specified output flags... 
+ Please use the -f flag to update the preference (default to all output files) 
+{'ERT': 1, 'ERT_summary': 1, 'ART': 1, 'ART_summary': 1, 'energy_estimation': 1, 'flattened_arch': 1}
+Warn: Cannot recognize the top key "mapper" in file /workspace/accelergy_architectures/sonos_pim/mapper/mapper.yaml 
+Warn: Cannot recognize the top key "mapspace" in file /workspace/accelergy_architectures/sonos_pim/constraints/base_pim_constraints.yaml 
+Warn: Cannot recognize the top key "mapspace" in file /workspace/accelergy_architectures/sonos_pim/constraints/constraints.yaml 
+Warn: Cannot recognize the top key "mapspace_constraints" in file /workspace/accelergy_architectures/sonos_pim/constraints/tile_mapper_constraints.yaml 
+Warn: Cannot recognize the top key "problem" in file /workspace/accelergy_architectures/sonos_pim/vgg/vgg_layer8.yaml 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/system_SONOS.yaml for architecture info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/storage.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/lmac.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/A2D_conversion_system.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/XY_NoC.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/smartbuffer_RF.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/DAC_SimpleMulticast.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/D2A_conversion_system.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/sonos_array.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/smartbuffer_SRAM.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/digital_accumulation_system.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/ADC_SimpleMulticast.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/reg_storage.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/memcell_compute.yaml for compound_components info 
+Info: Parsing file /workspace/accelergy_architectures/sonos_pim/arch/components/sonos_compute_mapper.yaml for compound_components info 
+Info: config file located: /root/.config/accelergy/accelergy_config.yaml 
+config file content: 
+ {'estimator_plug_ins': ['/usr/local/share/accelergy/estimation_plug_ins', '/workspace/src/athena/accelergy-sonos-plug-in'], 'primitive_components': ['/usr/local/share/accelergy/primitive_component_libs', '/workspace/accelergy_architectures/sonos_pim/primitive_sonos.lib.yaml'], 'table_plug_ins': {'roots': ['/usr/local/lib/share/accelergy/estimation_plug_ins/accelergy-table-based-plug-ins/set_of_table_templates', '/workspace/accelergy_architectures/sonos_pim/PIM_estimation_tables']}, 'version': 0.3}
+Info: primitive component file parsed:  /usr/local/share/accelergy/primitive_component_libs/soc_primitives.lib.yaml 
+Info: primitive component file parsed:  /usr/local/share/accelergy/primitive_component_libs/pim_primitive_component.lib.yaml 
+Info: primitive component file parsed:  /usr/local/share/accelergy/primitive_component_libs/primitive_component.lib.yaml 
+Info: primitive component file parsed:  /workspace/accelergy_architectures/sonos_pim/primitive_sonos.lib.yaml 
+Info: estimator plug-in identified by:  /usr/local/share/accelergy/estimation_plug_ins/dummy_tables/dummy.estimator.yaml 
+Info: estimator plug-in identified by:  /usr/local/share/accelergy/estimation_plug_ins/accelergy-aladdin-plug-in/aladdin.estimator.yaml 
+Info: estimator plug-in identified by:  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti.estimator.yaml 
+Info: estimator plug-in identified by:  /usr/local/share/accelergy/estimation_plug_ins/accelergy-table-based-plug-ins/table.estimator.yaml 
+table-based-plug-ins Identifies a set of tables named:  memristor_tables
+table-based-plug-ins Identifies a set of tables named:  sonos_tables
+table-based-plug-ins Identifies a set of tables named:  32nm_tables
+Info: estimator plug-in identified by:  /workspace/src/athena/accelergy-sonos-plug-in/sonos.estimator.yaml 
+Info: CACTI plug-in... Querying CACTI for request:
+ {'class_name': 'SRAM', 'attributes': {'sizeKB': 1024, 'latency': '1ns', 'technology': '65nm', 'width': 64, 'depth': 512, 'n_rd_ports': 0, 'n_wr_ports': 0, 'n_rdwr_ports': 1, 'n_banks': 1}, 'action_name': 'read', 'arguments': {'data_delta': 0, 'address_delta': 0}}
+copy  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/default_SRAM.cfg  to  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/timeloop-mapper.07_13_15_10_15_SRAM.cfg
+CACTI plug-in removing temp file:  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/timeloop-mapper.07_13_15_10_15_SRAM.cfg
+Info: CACTI plug-in... Querying CACTI for request:
+ {'class_name': 'SRAM', 'attributes': OrderedDict([('technology', '45nm'), ('width', 64), ('depth', 16384), ('n_rdwr_ports', 2), ('n_banks', 32), ('n_rd_ports', 0), ('n_wr_ports', 0), ('latency', '5ns')]), 'action_name': 'write', 'arguments': {'data_delta': 0, 'address_delta': 0}}
+copy  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/default_SRAM.cfg  to  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/timeloop-mapper.07_13_15_10_43_SRAM.cfg
+CACTI plug-in removing temp file:  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/timeloop-mapper.07_13_15_10_43_SRAM.cfg
+Info: CACTI plug-in... Querying CACTI for request:
+ {'class_name': 'SRAM', 'attributes': OrderedDict([('technology', '45nm'), ('latency', '1ns'), ('width', 16), ('depth', 128), ('datawidth', 16), ('n_rd_ports', 0), ('n_wr_ports', 0), ('n_rdwr_ports', 1), ('n_banks', 1)]), 'action_name': 'read', 'arguments': {'address_delta': 1, 'data_delta': 1}}
+copy  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/default_SRAM.cfg  to  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/timeloop-mapper.07_13_15_10_43_SRAM.cfg
+CACTI plug-in removing temp file:  /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/timeloop-mapper.07_13_15_10_43_SRAM.cfg
+Warn: No action counts are specified as yaml input 
+Info: flattened architecture is saved to: ./timeloop-mapper.flattened_architecture.yaml 
+Info: energy reference table is saved to: ./timeloop-mapper.ERT.yaml 
+Info: energy reference table summary is saved to: ./timeloop-mapper.ERT_summary.yaml 
+Warn: no runtime energy estimations are generated... not generating energy_estimation.yaml 
+Info: area reference table is saved to: ./timeloop-mapper.ART.yaml 
+Info: area reference table summary is saved to: ./timeloop-mapper.ART_summary.yaml 
+
+  _______                __                
+ /_  __(_)___ ___  ___  / /___  ____  ____ 
+  / / / / __ `__ \/ _ \/ / __ \/ __ \/ __ \
+ / / / / / / / / /  __/ / /_/ / /_/ / /_/ /
+/_/ /_/_/ /_/ /_/\___/_/\____/\____/ .___/ 
+                                  /_/      
+
+Problem configuration complete.
+execute:/usr/local/bin/accelergy /workspace/accelergy_architectures/sonos_pim/arch/system_SONOS.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/storage.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/lmac.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/A2D_conversion_system.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/XY_NoC.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/smartbuffer_RF.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/DAC_SimpleMulticast.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/D2A_conversion_system.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/sonos_array.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/smartbuffer_SRAM.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/digital_accumulation_system.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/ADC_SimpleMulticast.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/reg_storage.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/memcell_compute.yaml /workspace/accelergy_architectures/sonos_pim/arch/components/sonos_compute_mapper.yaml /workspace/accelergy_architectures/sonos_pim/mapper/mapper.yaml /workspace/accelergy_architectures/sonos_pim/constraints/base_pim_constraints.yaml /workspace/accelergy_architectures/sonos_pim/constraints/constraints.yaml /workspace/accelergy_architectures/sonos_pim/constraints/tile_mapper_constraints.yaml /workspace/accelergy_architectures/sonos_pim/vgg/vgg_layer8.yaml --oprefix timeloop-mapper. -o ./ > timeloop-mapper.accelergy.log 2>&1
+Generate Accelergy ERT (energy reference table) to replace internal energy model.
+Generate Accelergy ART (area reference table) to replace internal area model.
+Architecture configuration complete.
+Using threads = 15
+Mapper configuration complete.
+Initializing Index Factorization subspace.
+  Factorization options along problem dimension C = 495
+  Factorization options along problem dimension M = 715
+  Factorization options along problem dimension R = 5
+  Factorization options along problem dimension S = 5
+  Factorization options along problem dimension N = 1
+  Factorization options along problem dimension P = 288
+  Factorization options along problem dimension Q = 288
+Mapspace Dimension [IndexFactorization] Size: 733898880000
+Mapspace Dimension [LoopPermutation] Size: 3871447695360000
+Mapspace Dimension [Spatial] Size: 64
+Mapspace Dimension [DatatypeBypass] Size: 64
+Mapspace split! Per-split Mapping Dimension [IndexFactorization] Size: 48926592000 Residue: 0
+Mapspace construction complete.
+Search configuration complete.
+[  8] STATEMENT: 30000 invalid mappings (29985 fanout, 15 capacity) found since the last valid mapping, terminating search.
+[ 12] STATEMENT: 30000 invalid mappings (29987 fanout, 13 capacity) found since the last valid mapping, terminating search.
+[ 14] STATEMENT: 30000 invalid mappings (29985 fanout, 15 capacity) found since the last valid mapping, terminating search.
+[  4] STATEMENT: 30000 invalid mappings (29979 fanout, 21 capacity) found since the last valid mapping, terminating search.
+[ 11] STATEMENT: 30000 invalid mappings (29976 fanout, 24 capacity) found since the last valid mapping, terminating search.
+[  1] STATEMENT: 30000 invalid mappings (29978 fanout, 22 capacity) found since the last valid mapping, terminating search.
+[  5] STATEMENT: 30000 invalid mappings (29985 fanout, 15 capacity) found since the last valid mapping, terminating search.
+[  3] STATEMENT: 30000 invalid mappings (29981 fanout, 19 capacity) found since the last valid mapping, terminating search.
+[ 13] STATEMENT: 30000 invalid mappings (29982 fanout, 18 capacity) found since the last valid mapping, terminating search.
+[  0] STATEMENT: 30000 invalid mappings (29979 fanout, 21 capacity) found since the last valid mapping, terminating search.
+[  6] STATEMENT: 30000 invalid mappings (29979 fanout, 21 capacity) found since the last valid mapping, terminating search.
+[  9] STATEMENT: 30000 invalid mappings (29975 fanout, 25 capacity) found since the last valid mapping, terminating search.
+[  7] STATEMENT: 30000 invalid mappings (29983 fanout, 17 capacity) found since the last valid mapping, terminating search.
+[ 10] Utilization = 0.01 | pJ/MACC = 4705.939 | L5[IO] Q7 Q2X R3X M8X C2X - L4[IO] P4 - L3[] Q1 C2X - L2[] S3 M16 M4X C64X - L1[W] P7 - L0[] Q2 
+[ 10] STATEMENT: 7 valid mappings found, terminating search.
+[  2] Utilization = 0.05 | pJ/MACC = 4704.234 | L5[IO] Q2 P2 Q7X M8X C4X - L4[IO] Q1 - L3[] P7 - L2[] C16 R3 M2 S3X M32X C4X - L1[W] P2 Q2 - L0[] Q1 
+[  2] STATEMENT: 7 valid mappings found, terminating search.
+
+Summary stats for best mapping found by mapper:
+  Utilization = 0.05 | pJ/MACC = 4704.234
+
+    > timeloop-mapper execution took 241.185 seconds

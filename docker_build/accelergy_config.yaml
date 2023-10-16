@@ -1,0 +1,6 @@
+estimator_plug_ins:
+- /usr/local/share/accelergy/estimation_plug_ins
+- /home/ath_user/accelergy_plugins
+primitive_components:
+- /usr/local/share/accelergy/primitive_component_libs
+version: 0.3

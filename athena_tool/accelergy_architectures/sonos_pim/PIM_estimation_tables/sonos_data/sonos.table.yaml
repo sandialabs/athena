@@ -1,0 +1,4 @@
+name:  sonos_tables
+technology: sonos
+accuracy: 70
+path_to_data_dir: ./data # this is my own path

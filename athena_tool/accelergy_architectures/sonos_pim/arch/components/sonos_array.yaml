@@ -1,0 +1,84 @@
+compound_components:
+  version: 0.3
+  classes:
+    - name: sonos_array
+      attributes:
+        cell_technology: sonos
+        cmos_technology: 40nm
+        cell_datawidth: 8
+        DAC_datawidth: 2
+        datawidth: 8
+        nCells: datawidth/cell_datawidth
+        nCycles: datawidth/DAC_datawidth
+        compute_latency: 100ns
+        fat: 0
+      subcomponents:
+        - name: sonos_cell[0..nCells-1]
+          class: sonos_compute
+          attributes:
+            technology: cell_technology
+            cellwidth: cellwidth
+            latency: 100ns
+            active_cols: active_cols
+            active_rows: active_rows
+            allow_negatives: allow_negatives
+            activation_function: 0
+            fat: fat
+      actions:
+        - name: compute
+          arguments:
+            active_cols: 0..254
+            active_rows: 0..1151
+          subcomponents:
+            - name: sonos_cell[0..nCells-1] # spatial
+              actions:
+                - name: compute
+                  action_share: nCycles # temporal: compute 1 bit input at a time
+                  arguments:
+                    ttlx: 1024
+                    active_rows: active_rows
+                    active_cols: active_cols
+                    fat: fat
+#                - name: mac_random
+#                  arguments:
+#                    active_rows: active_rows
+#                    active_cols: active_cols
+
+
+
+
+    - name: sonos_storage
+      attributes:
+        cmos_technology: 32nm
+        cell_technology: sonos
+        depth: 256
+        width: 16
+        cell_datawidth: 2
+        nCells: 294912
+      subcomponents:
+        - name: storage_cell[0..nCells-1]
+          class: sonos_cell_storage
+          attributes:
+            technology: sonos
+            latency: latency
+            active_rows: active_rows
+            active_cols: active_cols
+            cellwidth: cell_datawidth
+      actions:
+        - name: read
+          subcomponents:
+            - name: storage_cell
+              actions:
+                - name: idle
+                  arguments:
+                    ttl: 32
+                - name: read
+                - name: idle
+
+        - name: write
+          subcomponents:
+            - name: storage_cell
+              actions:
+                - name: write
+                - name: idle
+
