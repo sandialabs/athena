@@ -20,7 +20,6 @@ version: 1.0.0
 url: "https://github.com/sandialabs/athena/"
 license: MIT
 date-released: 2023-10-16
-
 preferred-citation:
   type: conference-paper
   authors:
@@ -50,15 +49,13 @@ preferred-citation:
     name-particle: G
     family-names: Cardwell
     affiliation: Sandia National Laboratories
-  identifiers:
-    type: doi
-    value:  "10.1109/ICRC57508.2022.00016"
-  journal: "2022 IEEE International Conference on Rebooting Computing (ICRC)"
+  doi: "10.1109/ICRC57508.2022.00016"
+  title: "ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures"
   conference:
     name: "2022 IEEE International Conference on Rebooting Computing (ICRC)"
-    date-start: "2022-12-08"
-    date-end: "2022-12-09"
-    
+  collection-tite: "2022 IEEE International Conference on Rebooting Computing (ICRC) - December 9-10 2022, Proceedings"
   month: 12
   year: 2022
-  title: "ATHENA: Enabling Codesign for Next-Generation AI/ML Architectures"
+  start: 13
+  end: 23
+  
