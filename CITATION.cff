@@ -41,8 +41,7 @@ version: 0.0.1
 date-released: '2023-10-16'
 identifiers:
   - type: url
-    value: >-
-      https://ieeexplore.ieee.org/abstract/document/10062740/
+    value:  https://ieeexplore.ieee.org/abstract/document/10062740/
     description: Publication URL
 repository-code: 'https://github.com/sandialabs/athena'
 license: MIT
