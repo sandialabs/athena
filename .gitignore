@@ -171,3 +171,4 @@ athena_tool/src/athena/__pycache__
 ./athena_tool/src/athena/__pycache__
 ./athena_tool/docs/api
 athena_tool/docs/api/
+docs/build/
